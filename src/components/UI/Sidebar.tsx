@@ -173,6 +173,7 @@ export default function Sidebar({
     '& .MuiListItemIcon-root': { color: SKY },
     '& .MuiListItemText-primary': { fontWeight: 800 },
     position: 'relative',
+    boxShadow: '0 12px 24px rgba(23, 19, 16, 0.08)',
     '&::before': {
       content: '""',
       position: 'absolute',
@@ -187,15 +188,17 @@ export default function Sidebar({
 
   const navItemSx = {
     mx: 0,
-    my: 0.4,
-    borderRadius: 3,
-    py: 1.05,
-    px: 1.7,
+    my: 0.45,
+    borderRadius: 3.5,
+    py: 1,
+    px: 1.6,
     color: TEXT_SECONDARY,
+    border: `1px solid transparent`,
     transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
     '&:hover': {
       bgcolor: alpha(SKY, 0.05),
       color: SKY,
+      borderColor: alpha(SKY, 0.08),
       '& .MuiListItemIcon-root': { color: SKY },
     },
   }
@@ -308,6 +311,8 @@ export default function Sidebar({
         width: isSidebarExpanded ? DRAWER_WIDTH : COLLAPSED_WIDTH,
         height: '100vh',
         bgcolor: SURFACE,
+        backgroundImage:
+          'radial-gradient(circle at 16% 4%, rgba(217,121,67,0.1) 0%, transparent 24%), radial-gradient(circle at 84% 10%, rgba(191,165,140,0.18) 0%, transparent 26%), linear-gradient(180deg, #fffdf9 0%, #f7efe4 100%)',
         borderRight: `1px solid ${alpha(SKY, 0.1)}`,
         transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         display: 'flex',
@@ -326,10 +331,10 @@ export default function Sidebar({
         <Box
           sx={{
             p: isSidebarExpanded ? 2 : 1.2,
-            borderRadius: 5,
+            borderRadius: 5.5,
             background: `linear-gradient(180deg, ${SKY} 0%, #221C18 100%)`,
             color: '#ffffff',
-            minHeight: isSidebarExpanded ? 142 : 72,
+            minHeight: isSidebarExpanded ? 154 : 72,
             display: 'flex',
             alignItems: isSidebarExpanded ? 'stretch' : 'center',
             justifyContent: 'center',
@@ -352,6 +357,18 @@ export default function Sidebar({
           />
           {isSidebarExpanded && (
             <Box sx={{ mt: 'auto' }}>
+              <Typography
+                sx={{
+                  fontSize: '0.62rem',
+                  fontWeight: 800,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: alpha('#ffffff', 0.62),
+                  mb: 0.7,
+                }}
+              >
+                Dispatch rail
+              </Typography>
               <Typography sx={{ fontWeight: 900, fontSize: '1rem', lineHeight: 1.1 }}>
                 SkyRush control rail
               </Typography>
@@ -362,9 +379,23 @@ export default function Sidebar({
                   fontSize: '0.74rem',
                   lineHeight: 1.5,
                 }}
+                >
+                  Chhatri Chauraha, Nai Basti, Pilibhit 262001
+                </Typography>
+              <Box
+                sx={{
+                  mt: 1.4,
+                  px: 1.3,
+                  py: 1,
+                  borderRadius: 3,
+                  bgcolor: alpha('#ffffff', 0.08),
+                  border: `1px solid ${alpha('#ffffff', 0.12)}`,
+                }}
               >
-                Chhatri Chauraha, Nai Basti, Pilibhit 262001
-              </Typography>
+                <Typography sx={{ fontSize: '0.72rem', fontWeight: 700, color: alpha('#ffffff', 0.9) }}>
+                  Faster bookings, calmer scans.
+                </Typography>
+              </Box>
             </Box>
           )}
         </Box>
@@ -399,10 +430,11 @@ export default function Sidebar({
               )}
               <Box
                 sx={{
-                  p: isSidebarExpanded ? 0.8 : 0.2,
-                  borderRadius: 4,
+                  p: isSidebarExpanded ? 0.9 : 0.25,
+                  borderRadius: 4.5,
                   bgcolor: alpha('#ffffff', 0.62),
                   border: `1px solid ${alpha(SKY, 0.08)}`,
+                  boxShadow: '0 10px 24px rgba(23, 19, 16, 0.04)',
                 }}
               >
                 {renderNavList(items)}

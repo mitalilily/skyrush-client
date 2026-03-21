@@ -43,6 +43,8 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
   const navigate = useNavigate()
   const location = useLocation()
   const isTablet = useMediaQuery(theme.breakpoints.down('lg'))
+  const isCompactDesktop = useMediaQuery(theme.breakpoints.down('xl'))
+  const showWideDesktopNav = !isCompactDesktop
 
   return (
     <Box
@@ -64,9 +66,9 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
         style={{ width: '100%' }}
       >
         <Stack
-          direction={isTablet ? 'column' : 'row'}
-          spacing={isTablet ? 1.1 : 1.4}
-          alignItems={isTablet ? 'stretch' : 'center'}
+          direction={isCompactDesktop ? 'column' : 'row'}
+          spacing={isCompactDesktop ? 1.1 : 1.4}
+          alignItems={isCompactDesktop ? 'stretch' : 'center'}
           justifyContent="space-between"
           sx={{
             width: '100%',
@@ -84,7 +86,7 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
             spacing={1.4}
             alignItems="center"
             justifyContent="space-between"
-            sx={{ minWidth: 0, width: isTablet ? '100%' : 'auto' }}
+            sx={{ minWidth: 0, width: isCompactDesktop ? '100%' : 'auto' }}
           >
             <Stack direction="row" spacing={1.2} alignItems="center" minWidth={0}>
               <IconButton
@@ -112,18 +114,18 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
               </IconButton>
 
               <Box
-                sx={{ cursor: 'pointer', minWidth: 0 }}
+                sx={{ cursor: 'pointer', minWidth: 0, flex: 1 }}
                 onClick={() => navigate('/home')}
               >
-                <Stack direction="row" spacing={1.3} alignItems="center">
+                <Stack direction="row" spacing={1.3} alignItems="center" minWidth={0}>
                   <Box
                     component="img"
                     src="/logo/skyrush-logo.png"
                     alt="SkyRush Express Courier"
-                    sx={{ width: { xs: 146, sm: 176 }, height: 'auto', display: 'block' }}
+                    sx={{ width: { xs: 138, sm: 170 }, height: 'auto', display: 'block', flexShrink: 0 }}
                   />
-                  {!isTablet && (
-                    <Stack spacing={0.25}>
+                  {showWideDesktopNav && (
+                    <Stack spacing={0.25} minWidth={0}>
                       <Typography
                         sx={{
                           fontSize: '0.68rem',
@@ -131,6 +133,7 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
                           letterSpacing: '0.18em',
                           color: TEXT_SECONDARY,
                           textTransform: 'uppercase',
+                          whiteSpace: 'nowrap',
                         }}
                       >
                         SkyRush express courier
@@ -141,7 +144,7 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
               </Box>
             </Stack>
 
-            {!isTablet && (
+            {showWideDesktopNav && (
               <Stack
                 direction="row"
                 spacing={0.6}
@@ -184,17 +187,17 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
             direction="row"
             spacing={{ xs: 0.8, sm: 1.1, md: 1.2 }}
             alignItems="center"
-            justifyContent={isTablet ? 'space-between' : 'flex-end'}
+            justifyContent={isCompactDesktop ? 'space-between' : 'flex-end'}
             useFlexGap
             sx={{
               flex: '1 1 auto',
               minWidth: 0,
               flexWrap: 'wrap',
               rowGap: 0.85,
-              width: isTablet ? '100%' : 'auto',
+              width: isCompactDesktop ? '100%' : 'auto',
             }}
           >
-            {!isTablet && <GlobalSearch />}
+            {showWideDesktopNav && <GlobalSearch />}
 
             <Button
               variant="contained"
@@ -204,6 +207,7 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
                 color: '#ffffff',
                 minWidth: 'fit-content',
                 px: 2.1,
+                whiteSpace: 'nowrap',
                 '&:hover': {
                   backgroundColor: '#0D0A08',
                 },
