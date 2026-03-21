@@ -87,14 +87,7 @@ export default function Layout() {
           py: { xs: 0.9, md: 1.3 },
         }}
       >
-        <Stack
-          sx={{
-            flexGrow: 1,
-            minHeight: 0,
-            bgcolor: 'transparent',
-            gap: { xs: 0.4, md: 0.7 },
-          }}
-        >
+        <Stack sx={{ flexGrow: 1, minHeight: 0, bgcolor: 'transparent' }}>
           <Navbar handleDrawerToggle={handleDrawerToggle} pinned={pinned} />
 
           <Box
@@ -105,7 +98,6 @@ export default function Layout() {
               overflowX: 'hidden',
               bgcolor: 'transparent',
               px: { xs: 1.1, md: 2.2 },
-              pt: { xs: 0.25, md: 0.45 },
               pb: { xs: 1.9, md: 2.8 },
               minHeight: 0,
             }}

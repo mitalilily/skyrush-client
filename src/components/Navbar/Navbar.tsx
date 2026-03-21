@@ -43,14 +43,14 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
   const navigate = useNavigate()
   const location = useLocation()
   const isTablet = useMediaQuery(theme.breakpoints.down('lg'))
-  const showWideDesktopNav = useMediaQuery('(min-width:1760px)')
+  const isCompactDesktop = useMediaQuery(theme.breakpoints.down('xl'))
+  const showWideDesktopNav = !isCompactDesktop
 
   return (
     <Box
       sx={{
         px: { xs: 1.5, sm: 2, md: 2.6 },
         py: { xs: 1.25, md: 1.45 },
-        mb: { xs: 0.4, md: 0.7 },
         bgcolor: 'transparent',
         display: 'flex',
         alignItems: 'stretch',
@@ -66,9 +66,9 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
         style={{ width: '100%' }}
       >
         <Stack
-          direction={showWideDesktopNav ? 'row' : 'column'}
-          spacing={showWideDesktopNav ? 1.4 : 1.1}
-          alignItems={showWideDesktopNav ? 'center' : 'stretch'}
+          direction={isCompactDesktop ? 'column' : 'row'}
+          spacing={isCompactDesktop ? 1.1 : 1.4}
+          alignItems={isCompactDesktop ? 'stretch' : 'center'}
           justifyContent="space-between"
           sx={{
             width: '100%',
@@ -86,7 +86,7 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
             spacing={1.4}
             alignItems="center"
             justifyContent="space-between"
-            sx={{ minWidth: 0, width: showWideDesktopNav ? 'auto' : '100%' }}
+            sx={{ minWidth: 0, width: isCompactDesktop ? '100%' : 'auto' }}
           >
             <Stack direction="row" spacing={1.2} alignItems="center" minWidth={0}>
               <IconButton
@@ -117,29 +117,26 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
                 sx={{ cursor: 'pointer', minWidth: 0, flex: 1 }}
                 onClick={() => navigate('/home')}
               >
-                <Stack direction="row" spacing={1.3} alignItems="center" minWidth={0}>
+                <Stack spacing={0.55} alignItems="flex-start" minWidth={0}>
                   <Box
                     component="img"
                     src="/logo/skyrush-logo.png"
                     alt="SkyRush Express Courier"
                     sx={{ width: { xs: 138, sm: 170 }, height: 'auto', display: 'block', flexShrink: 0 }}
                   />
-                  {showWideDesktopNav && (
-                    <Stack spacing={0.25} minWidth={0}>
-                      <Typography
-                        sx={{
-                          fontSize: '0.68rem',
-                          fontWeight: 800,
-                          letterSpacing: '0.18em',
-                          color: TEXT_SECONDARY,
-                          textTransform: 'uppercase',
-                          whiteSpace: 'nowrap',
-                        }}
-                      >
-                        SkyRush express courier
-                      </Typography>
-                    </Stack>
-                  )}
+                  <Typography
+                    sx={{
+                      fontSize: '0.68rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.18em',
+                      color: TEXT_SECONDARY,
+                      textTransform: 'uppercase',
+                      whiteSpace: 'nowrap',
+                      pl: 0.2,
+                    }}
+                  >
+                    SkyRush Express
+                  </Typography>
                 </Stack>
               </Box>
             </Stack>
@@ -187,14 +184,14 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
             direction="row"
             spacing={{ xs: 0.8, sm: 1.1, md: 1.2 }}
             alignItems="center"
-            justifyContent={showWideDesktopNav ? 'flex-end' : 'space-between'}
+            justifyContent={isCompactDesktop ? 'space-between' : 'flex-end'}
             useFlexGap
             sx={{
               flex: '1 1 auto',
               minWidth: 0,
               flexWrap: 'wrap',
               rowGap: 0.85,
-              width: showWideDesktopNav ? 'auto' : '100%',
+              width: isCompactDesktop ? '100%' : 'auto',
             }}
           >
             {showWideDesktopNav && <GlobalSearch />}
