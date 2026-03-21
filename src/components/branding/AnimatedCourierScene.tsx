@@ -119,10 +119,9 @@ export function RollingVanScene({ compact = false }: { compact?: boolean }) {
             <rect x="148" y="132" width="22" height="12" rx="4" fill={alpha('#ffffff', 0.24)} />
             <rect x="84" y="145" width="56" height="16" rx="8" fill={NAVY} />
             <rect x="244" y="145" width="56" height="16" rx="8" fill={NAVY} />
-
             <MotionGroup
               animate={{ rotate: 360 }}
-              transition={{ duration: 1.1, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
               style={{ transformOrigin: '112px 161px', transformBox: 'fill-box' }}
             >
               <circle cx="112" cy="161" r="22" fill="#2A2420" />
@@ -134,7 +133,7 @@ export function RollingVanScene({ compact = false }: { compact?: boolean }) {
 
             <MotionGroup
               animate={{ rotate: 360 }}
-              transition={{ duration: 1.1, repeat: Infinity, ease: 'linear' }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
               style={{ transformOrigin: '272px 161px', transformBox: 'fill-box' }}
             >
               <circle cx="272" cy="161" r="22" fill="#2A2420" />

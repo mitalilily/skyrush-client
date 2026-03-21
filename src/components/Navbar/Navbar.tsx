@@ -43,14 +43,14 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
   const navigate = useNavigate()
   const location = useLocation()
   const isTablet = useMediaQuery(theme.breakpoints.down('lg'))
-  const isCompactDesktop = useMediaQuery(theme.breakpoints.down('xl'))
-  const showWideDesktopNav = !isCompactDesktop
+  const showWideDesktopNav = useMediaQuery('(min-width:1760px)')
 
   return (
     <Box
       sx={{
         px: { xs: 1.5, sm: 2, md: 2.6 },
         py: { xs: 1.25, md: 1.45 },
+        mb: { xs: 0.4, md: 0.7 },
         bgcolor: 'transparent',
         display: 'flex',
         alignItems: 'stretch',
@@ -66,9 +66,9 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
         style={{ width: '100%' }}
       >
         <Stack
-          direction={isCompactDesktop ? 'column' : 'row'}
-          spacing={isCompactDesktop ? 1.1 : 1.4}
-          alignItems={isCompactDesktop ? 'stretch' : 'center'}
+          direction={showWideDesktopNav ? 'row' : 'column'}
+          spacing={showWideDesktopNav ? 1.4 : 1.1}
+          alignItems={showWideDesktopNav ? 'center' : 'stretch'}
           justifyContent="space-between"
           sx={{
             width: '100%',
@@ -86,7 +86,7 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
             spacing={1.4}
             alignItems="center"
             justifyContent="space-between"
-            sx={{ minWidth: 0, width: isCompactDesktop ? '100%' : 'auto' }}
+            sx={{ minWidth: 0, width: showWideDesktopNav ? 'auto' : '100%' }}
           >
             <Stack direction="row" spacing={1.2} alignItems="center" minWidth={0}>
               <IconButton
@@ -187,14 +187,14 @@ export default function Navbar({ handleDrawerToggle, pinned }: NavbarProps) {
             direction="row"
             spacing={{ xs: 0.8, sm: 1.1, md: 1.2 }}
             alignItems="center"
-            justifyContent={isCompactDesktop ? 'space-between' : 'flex-end'}
+            justifyContent={showWideDesktopNav ? 'flex-end' : 'space-between'}
             useFlexGap
             sx={{
               flex: '1 1 auto',
               minWidth: 0,
               flexWrap: 'wrap',
               rowGap: 0.85,
-              width: isCompactDesktop ? '100%' : 'auto',
+              width: showWideDesktopNav ? 'auto' : '100%',
             }}
           >
             {showWideDesktopNav && <GlobalSearch />}
